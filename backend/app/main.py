@@ -65,15 +65,19 @@ async def lifespan(app: FastAPI):
 
 def _resolve_frontend_dir() -> str | None:
     """Find the frontend dist/static directory relative to this file."""
-    base = Path(__file__).resolve().parent.parent.parent  # backend/
+    here = Path(__file__).resolve().parent  # backend/app/
+    project_root = here.parent.parent       # project root (local dev) or /app (Docker)
     candidates = [
-        base / "frontend" / "dist",
-        base / ".." / "frontend" / "dist",
+        project_root / "frontend" / "dist",   # local dev: <project>/frontend/dist
+        project_root / "static",              # Docker: /app/static
     ]
     for candidate in candidates:
-        resolved = candidate.resolve()
-        if resolved.is_dir():
-            return str(resolved)
+        try:
+            resolved = candidate.resolve()
+            if resolved.is_dir():
+                return str(resolved)
+        except OSError:
+            continue
     return None
 
 

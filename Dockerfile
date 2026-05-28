@@ -1,8 +1,8 @@
 # Stage 1: Build frontend
 FROM node:22-alpine AS frontend-build
 WORKDIR /build
-COPY frontend/package.json ./
-RUN npm install
+COPY frontend/package.json frontend/package-lock.json ./
+RUN npm ci
 COPY frontend/ ./
 RUN npm run build
 
@@ -20,7 +20,7 @@ COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Backend code
-COPY backend/ .
+COPY backend/app/ ./app/
 
 # Frontend build output
 COPY --from=frontend-build /build/dist ./static
