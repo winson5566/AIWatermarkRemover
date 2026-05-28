@@ -21,33 +21,31 @@ const icons = {
 
 export default function FeatureCards() {
   const { t } = useTranslation();
-
   const features = [
-    { key: "visible", icon: icons.visible },
-    { key: "invisible", icon: icons.invisible },
-    { key: "metadata", icon: icons.metadata },
+    { key: "visible", icon: icons.visible, gradient: "from-brand-500/20 to-brand-600/10" },
+    { key: "invisible", icon: icons.invisible, gradient: "from-accent-500/20 to-accent-600/10" },
+    { key: "metadata", icon: icons.metadata, gradient: "from-purple-500/20 to-purple-600/10" },
   ] as const;
 
   return (
-    <section>
-      <h2 className="mb-8 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-        {t("features.title")}
+    <section className="relative z-10">
+      <h2 className="mb-10 text-center text-2xl font-bold text-white sm:text-3xl">
+        <span className="gradient-text">{t("features.title")}</span>
       </h2>
-      <div className="grid gap-6 sm:grid-cols-3">
-        {features.map(({ key, icon }) => (
+      <div className="grid gap-5 sm:grid-cols-3">
+        {features.map(({ key, icon, gradient }) => (
           <div
             key={key}
-            className="rounded-card border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+            className={`group relative overflow-hidden rounded-xl border border-white/[0.06] glass transition-all duration-300 hover:border-white/[0.1] hover:shadow-lg hover:shadow-brand-500/5`}
           >
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-              {icon}
+            <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 transition-opacity group-hover:opacity-100`} />
+            <div className="relative p-6">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-white/[0.06] bg-surface-100 text-brand-400">
+                {icon}
+              </div>
+              <h3 className="mb-2 text-lg font-semibold text-slate-100">{t(`features.${key}.title`)}</h3>
+              <p className="text-sm leading-relaxed text-slate-400">{t(`features.${key}.desc`)}</p>
             </div>
-            <h3 className="mb-2 text-lg font-semibold text-slate-900">
-              {t(`features.${key}.title`)}
-            </h3>
-            <p className="text-sm leading-relaxed text-slate-500">
-              {t(`features.${key}.desc`)}
-            </p>
           </div>
         ))}
       </div>

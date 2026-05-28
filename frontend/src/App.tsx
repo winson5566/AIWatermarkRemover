@@ -20,33 +20,23 @@ function AppContent() {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
-  // Auto-run detection when file is uploaded
   useDetection(state.fileId, dispatch);
 
-  const handleRetry = () => {
-    dispatch({ type: "RESET" });
-  };
+  const errorBanner = state.error && (
+    <div className="mb-6">
+      <ErrorBanner message={state.error} recoverable={state.phase === "error"} onRetry={() => dispatch({ type: "RESET" })} />
+    </div>
+  );
 
   const renderMainContent = () => {
-    const { phase, error } = state;
-
-    // Error banner is shown across multiple phases
-    const errorBanner = error && (
-      <div className="mb-6">
-        <ErrorBanner
-          message={error}
-          recoverable={phase === "error"}
-          onRetry={handleRetry}
-        />
-      </div>
-    );
+    const { phase } = state;
 
     switch (phase) {
       case "idle":
         return (
           <>
             <UploadZone />
-            <div className="mt-16 space-y-16">
+            <div className="mt-20 space-y-20">
               <FeatureCards />
               <CapabilityTable />
               <FaqSection />
@@ -55,21 +45,11 @@ function AppContent() {
         );
 
       case "uploaded":
-        return (
-          <>
-            {errorBanner}
-            <div className="space-y-6">
-              <FilePreview />
-              <DetectionResult />
-            </div>
-          </>
-        );
-
       case "detecting":
         return (
           <>
             {errorBanner}
-            <div className="space-y-6">
+            <div className="space-y-5">
               <FilePreview />
               <DetectionResult />
             </div>
@@ -80,7 +60,7 @@ function AppContent() {
         return (
           <>
             {errorBanner}
-            <div className="space-y-6">
+            <div className="space-y-5">
               <FilePreview />
               <DetectionResult />
               <ModeSelector />
@@ -92,7 +72,7 @@ function AppContent() {
         return (
           <>
             {errorBanner}
-            <div className="space-y-6">
+            <div className="space-y-5">
               <FilePreview />
               <ProcessingProgress />
             </div>
@@ -103,7 +83,7 @@ function AppContent() {
         return (
           <>
             {errorBanner}
-            <div className="space-y-6">
+            <div className="space-y-5">
               <ComparisonView />
               <DownloadButton />
             </div>
@@ -114,12 +94,10 @@ function AppContent() {
         return (
           <>
             {errorBanner}
-            {/* Show relevant content based on what was happening */}
             {state.fileId && state.previewUrl ? (
-              <div className="space-y-6">
+              <div className="space-y-5">
                 <FilePreview />
                 {state.detection && <DetectionResult />}
-                {!state.detection && state.phase !== "error" && <UploadZone />}
               </div>
             ) : (
               <UploadZone />
@@ -132,47 +110,51 @@ function AppContent() {
     }
   };
 
+  const getPhaseTitle = () => {
+    const { phase } = state;
+    if (phase === "idle") return null;
+    if (phase === "uploaded" || phase === "detecting") return t("detection.title");
+    if (phase === "detected") return t("mode.title");
+    if (phase === "processing") return t("processing.title");
+    if (phase === "completed") return "";
+    if (phase === "error" && !state.fileId) return t("error.title");
+    return "";
+  };
+
+  const phaseTitle = getPhaseTitle();
+
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-surface">
+      {/* Background effects */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="orb orb-1" />
+        <div className="orb orb-2" />
+        <div className="orb orb-3" />
+        <div className="absolute inset-0 bg-grid" />
+      </div>
+
       <Header />
 
-      {/* Main content */}
-      <main className="flex-1 pt-20 pb-12">
+      <main className="relative flex-1 pt-20 pb-16">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          {/* Hero section - only shown on idle */}
+          {/* Hero section */}
           {state.phase === "idle" && (
-            <div className="mb-10 text-center">
-              <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-                {t("app.title")}
+            <div className="mb-12 text-center pt-8 sm:pt-16">
+              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+                <span className="gradient-text">{t("app.title")}</span>
               </h1>
-              <p className="mt-3 text-base text-slate-500 sm:text-lg">
+              <p className="mt-5 text-base text-slate-400 sm:text-lg max-w-xl mx-auto">
                 {t("app.description")}
               </p>
+              {/* Decorative line */}
+              <div className="mx-auto mt-8 h-px w-24 bg-gradient-to-r from-transparent via-brand-500 to-transparent" />
             </div>
           )}
 
           {/* Phase title for non-idle states */}
-          {state.phase !== "idle" && state.phase !== "error" && (
+          {phaseTitle && (
             <div className="mb-6">
-              <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-                {state.phase === "uploaded" || state.phase === "detecting"
-                  ? t("detection.title")
-                  : state.phase === "detected"
-                    ? t("mode.title")
-                    : state.phase === "processing"
-                      ? t("processing.title")
-                      : state.phase === "completed"
-                        ? t("result.download")
-                        : ""}
-              </h1>
-            </div>
-          )}
-
-          {state.phase === "error" && !state.fileId && (
-            <div className="mb-6">
-              <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-                {t("error.title")}
-              </h1>
+              <h1 className="text-xl font-bold text-slate-100 sm:text-2xl">{phaseTitle}</h1>
             </div>
           )}
 
