@@ -1,0 +1,133 @@
+{
+  "app": {
+    "title": "AI Watermark Remover",
+    "description": "Elimina marcas de agua de IA visibles e invisibles de imágenes"
+  },
+  "header": {
+    "title": "AI Watermark Remover"
+  },
+  "upload": {
+    "title": "Sube tu imagen",
+    "dropzone": "Haz clic para subir o arrastra y suelta",
+    "formats": "PNG, JPG o WebP hasta 15 MB",
+    "uploading": "Subiendo..."
+  },
+  "detection": {
+    "title": "Resultados de detección",
+    "scanning": "Buscando marcas de agua...",
+    "found": "Marcas de agua de IA detectadas",
+    "none": "No se detectaron marcas de agua de IA",
+    "clean": "Tu imagen parece estar limpia",
+    "visible": "Marca de agua visible",
+    "metadata": "Metadatos de IA",
+    "details": "Mostrar detalles",
+    "confidence": "Confianza"
+  },
+  "mode": {
+    "title": "Elegir modo de procesamiento",
+    "quick": "Limpieza rápida",
+    "quickDesc": "Elimina logotipos de IA visibles y etiquetas 'Hecho con IA', borra metadatos",
+    "quickTime": "~2 segundos",
+    "full": "Todo en uno",
+    "fullDesc": "También interrumpe marcas de agua invisibles (SynthID, etc.) mediante regeneración con IA",
+    "fullComingSoon": "Próximamente",
+    "free": "Gratis",
+    "gpu": "GPU",
+    "process": "Procesar imagen"
+  },
+  "processing": {
+    "title": "Procesando tu imagen...",
+    "analyzing": "Analizando imagen...",
+    "removing": "Eliminando marcas de agua visibles...",
+    "stripping": "Borrando metadatos...",
+    "finalizing": "Finalizando...",
+    "cancel": "Cancelar"
+  },
+  "result": {
+    "before": "Antes",
+    "after": "Después",
+    "download": "Descargar imagen limpia",
+    "newImage": "Procesar nueva imagen"
+  },
+  "features": {
+    "title": "Lo que eliminamos",
+    "visible": {
+      "title": "Marcas de agua visibles de IA",
+      "desc": "Borra superposiciones visibles como el logotipo de estrella de Google Gemini y las tiras de texto de Doubao de imágenes generadas por IA."
+    },
+    "invisible": {
+      "title": "Marcas de agua invisibles",
+      "desc": "Interrumpe marcadores a nivel de píxel como SynthID y StableSignature incrustados en imágenes generadas por IA."
+    },
+    "metadata": {
+      "title": "Metadatos y procedencia de IA",
+      "desc": "Elimina credenciales de contenido C2PA, etiquetas EXIF de IA y fragmentos de texto PNG que etiquetan imágenes como generadas por IA."
+    }
+  },
+  "table": {
+    "title": "Capacidades de detección y eliminación",
+    "signal": "Señal de IA",
+    "layer": "Capa",
+    "detection": "Detección",
+    "removal": "Eliminación",
+    "yes": "Sí",
+    "free": "Gratis",
+    "limited": "Limitado",
+    "comingSoon": "Próximamente",
+    "rows": {
+      "gemini": "Estrella Gemini",
+      "doubao": "Tira de texto Doubao",
+      "c2pa": "Credenciales C2PA",
+      "exif": "Etiquetas EXIF/XMP de IA",
+      "png": "Fragmentos de texto PNG",
+      "synthid": "SynthID / Invisible"
+    }
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "q1": {
+      "q": "¿Qué hace AI Watermark Remover?",
+      "a": "Detecta y elimina marcas de agua relacionadas con IA de imágenes generadas por modelos de IA. Esto incluye superposiciones visibles (como la estrella de Gemini), marcas de agua invisibles a nivel de píxel (como SynthID) y metadatos incrustados (como manifiestos C2PA y etiquetas EXIF)."
+    },
+    "q2": {
+      "q": "¿Qué modelos de IA son compatibles?",
+      "a": "ChatGPT / DALL-E, Google Gemini, Midjourney, Stable Diffusion, Adobe Firefly, xAI Grok y Doubao. También manejamos el estándar C2PA Content Credentials utilizado en muchas herramientas de IA."
+    },
+    "q3": {
+      "q": "¿Cuál es la diferencia entre Limpieza rápida y Todo en uno?",
+      "a": "La limpieza rápida elimina marcas de agua visibles y metadatos en CPU en segundos, es gratis. Todo en uno añade la interrupción de marcas de agua invisibles mediante regeneración de imagen impulsada por GPU, proporcionando una limpieza más completa."
+    },
+    "q4": {
+      "q": "¿Qué formatos de imagen son compatibles?",
+      "a": "Archivos PNG, JPEG y WebP de hasta 15 MB."
+    },
+    "q5": {
+      "q": "¿Están seguros mis datos? ¿Qué pasa con las imágenes subidas?",
+      "a": "Tus imágenes se procesan en nuestro servidor y se eliminan automáticamente en 60 minutos. Nunca almacenamos, compartimos ni vendemos tus imágenes. El procesamiento ocurre en memoria cuando es posible, y los archivos temporales se limpian automáticamente."
+    },
+    "q6": {
+      "q": "¿Es realmente gratis?",
+      "a": "¡Sí! El modo de Limpieza rápida (marcas de agua visibles + metadatos) es completamente gratuito. El modo Todo en uno para marcas de agua invisibles requiere infraestructura GPU y estará disponible como opción de pago en el futuro."
+    }
+  },
+  "error": {
+    "title": "Algo salió mal",
+    "retry": "Intentar de nuevo",
+    "dismiss": "Descartar",
+    "fileTooLarge": "El archivo es demasiado grande. El tamaño máximo es 15 MB.",
+    "invalidFormat": "Formato de archivo no válido. Por favor sube PNG, JPG o WebP.",
+    "uploadFailed": "Error al subir la imagen. Por favor inténtalo de nuevo.",
+    "processFailed": "El procesamiento falló. Por favor inténtalo de nuevo."
+  },
+  "footer": {
+    "built": "Construido con remove-ai-watermarks",
+    "privacy": "Las imágenes subidas se eliminan automáticamente en 60 minutos. Nunca almacenamos ni vendemos tus datos.",
+    "github": "Ver en GitHub"
+  },
+  "language": {
+    "en": "EN",
+    "zh": "中文",
+    "es": "ES",
+    "fr": "FR"
+  }
+}
