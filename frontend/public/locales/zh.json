@@ -1,128 +1,109 @@
 {
   "app": {
     "title": "AI 水印移除器",
-    "description": "移除图片中可见和不可见的 AI 水印"
+    "description": "一键清理 AI 生成图片 — 去除水印、擦除标签、清除元数据，完全免费开放。"
   },
   "header": {
     "title": "AI 水印移除器"
   },
+  "hero": {
+    "badge": "免费开放",
+    "cta": "开始清理"
+  },
   "upload": {
-    "title": "上传您的图片",
-    "dropzone": "点击上传或拖放文件",
-    "formats": "支持 PNG、JPG 或 WebP 格式，最大 15 MB",
-    "uploading": "上传中..."
+    "dropzone": "拖放图片到此处或点击选择",
+    "formats": "PNG · JPG · WebP — 最大 15 MB",
+    "uploading": "正在上传..."
   },
   "detection": {
-    "title": "检测结果",
-    "scanning": "正在扫描水印...",
-    "found": "检测到 AI 水印",
-    "none": "未检测到 AI 水印",
-    "clean": "您的图片似乎是干净的",
-    "visible": "可见水印",
-    "metadata": "AI 元数据",
+    "title": "扫描结果",
+    "scanning": "正在分析图片...",
+    "found": "检测到水印",
+    "none": "未发现异常",
+    "clean": "这张图片中没有检测到已知的 AI 水印或元数据签名。",
+    "visible": "可见标记",
+    "metadata": "嵌入数据",
     "details": "查看详情",
-    "confidence": "置信度"
+    "confidence": "可信度"
   },
   "mode": {
-    "title": "选择处理模式",
-    "quick": "快速清理",
-    "quickDesc": "移除可见的 AI 标志和「AI 生成」标签，清除元数据",
-    "quickTime": "约 2 秒",
-    "full": "全面清理",
-    "fullDesc": "同时通过 AI 重新生成来破坏不可见水印（如 SynthID）",
-    "fullComingSoon": "即将推出",
+    "title": "清理方式",
+    "standard": "标准清理",
+    "standardDesc": "擦除可见叠加层和嵌入元数据，CPU 处理，秒级完成。",
+    "deep": "深度清理",
+    "deepDesc": "像素级重新生成，破坏不可见水印。需要 GPU 支持。",
+    "deepBadge": "即将推出",
+    "process": "清理图片",
     "free": "免费",
-    "gpu": "GPU",
-    "process": "处理图片"
+    "gpu": "GPU"
   },
-  "processing": {
-    "title": "正在处理您的图片...",
-    "analyzing": "分析图片中...",
-    "removing": "移除可见水印中...",
-    "stripping": "清除元数据中...",
-    "finalizing": "完成处理中...",
-    "cancel": "取消"
+  "progress": {
+    "title": "正在清理",
+    "step1": "读取图片数据...",
+    "step2": "擦除可见标记...",
+    "step3": "清除元数据...",
+    "step4": "完成处理..."
   },
   "result": {
-    "before": "处理前",
-    "after": "处理后",
-    "download": "下载清理后的图片",
-    "newImage": "处理新图片"
+    "before": "原始图片",
+    "after": "清理完成",
+    "download": "下载结果",
+    "newImage": "处理另一张图片"
   },
   "features": {
-    "title": "我们移除的内容",
+    "title": "工作原理",
     "visible": {
-      "title": "可见 AI 水印",
-      "desc": "擦除 AI 生成图片中的可见叠加层，如 Google Gemini 星形标志和豆包文字条。"
+      "title": "可见标记",
+      "desc": "通过模式匹配定位 Logo、星标和文字水印，再用内容感知修复无缝填充标记区域。"
     },
     "invisible": {
-      "title": "不可见水印",
-      "desc": "破坏嵌入在 AI 生成图片中的像素级标记，如 SynthID 和 StableSignature。"
+      "title": "隐藏信号",
+      "desc": "像素域重新生成破坏 SynthID 等嵌入模式，同时保持原始分辨率的图像质量。"
     },
     "metadata": {
-      "title": "AI 元数据与溯源",
-      "desc": "清除标记图片为 AI 生成的 C2PA 内容凭证、EXIF AI 标签和 PNG 文本块。"
+      "title": "数据层",
+      "desc": "C2PA 清单、EXIF 标签、PNG 文本块 — 识别并剥离所有 AI 来源的元数据。"
     }
   },
-  "table": {
-    "title": "检测与移除能力",
-    "signal": "AI 信号",
-    "layer": "层级",
-    "detection": "检测",
-    "removal": "移除",
-    "yes": "是",
-    "free": "免费",
-    "limited": "有限",
-    "comingSoon": "即将推出",
-    "rows": {
-      "gemini": "Gemini 星形标志",
-      "doubao": "豆包文字条",
-      "c2pa": "C2PA 内容凭证",
-      "exif": "EXIF/XMP AI 标签",
-      "png": "PNG 文本块",
-      "synthid": "SynthID / 不可见水印"
-    }
+  "platforms": {
+    "title": "支持来源",
+    "subtitle": "覆盖主流生成式 AI 平台的水印格式。",
+    "items": ["ChatGPT / DALL·E", "Google Gemini", "Midjourney", "Stable Diffusion", "Adobe Firefly", "xAI Grok", "豆包"]
   },
   "faq": {
-    "title": "常见问题",
+    "title": "常见疑问",
     "q1": {
-      "q": "AI 水印移除器有什么作用？",
-      "a": "它检测并移除 AI 模型生成的图片中的 AI 相关水印。包括可见叠加层（如 Gemini 星形标志）、不可见像素级水印（如 SynthID）以及嵌入的元数据（如 C2PA 清单和 EXIF 标签）。"
+      "q": "清理过程是如何工作的？",
+      "a": "我们运行两阶段流水线。首先通过模式匹配检测可见叠加层，用周围像素填充。然后清除元数据字段 — C2PA、EXIF、PNG 文本块。输出是不含 AI 来源标签的干净文件。"
     },
     "q2": {
-      "q": "支持哪些 AI 模型？",
-      "a": "ChatGPT / DALL-E、Google Gemini、Midjourney、Stable Diffusion、Adobe Firefly、xAI Grok 和豆包。我们还处理许多 AI 工具使用的 C2PA 内容凭证标准。"
+      "q": "清理会降低图片质量吗？",
+      "a": "标准清理仅处理水印所在的小区域，其余部分与原图完全相同。深度清理以原始分辨率重新生成，保留所有细节。"
     },
     "q3": {
-      "q": "快速清理和全面清理有什么区别？",
-      "a": "快速清理使用 CPU 在几秒内移除可见水印和元数据——完全免费。全面清理增加了使用 GPU 驱动的 AI 图像重新生成来破坏不可见水印，提供更彻底的清理。"
+      "q": "支持哪些文件类型和大小？",
+      "a": "支持 PNG、JPEG 和 WebP 格式，最大 15 MB。处理不可见水印建议使用 PNG 格式以获得最佳效果。"
     },
     "q4": {
-      "q": "支持哪些图片格式？",
-      "a": "支持 PNG、JPEG 和 WebP 文件，最大 15 MB。"
+      "q": "上传的图片会怎样处理？",
+      "a": "图片优先在内存中处理。临时文件在 60 分钟内自动清除。不会存储、分享、出售或用于训练。"
     },
     "q5": {
-      "q": "我的数据安全吗？上传的图片会怎样？",
-      "a": "您的图片在我们的服务器上处理，并在 60 分钟内自动删除。我们从不存储、分享或出售您的图片。处理尽可能在内存中进行，临时文件会自动清理。"
-    },
-    "q6": {
-      "q": "真的是免费的吗？",
-      "a": "是的！快速清理模式（可见水印 + 元数据）完全免费。用于不可见水印的全面清理模式需要 GPU 基础设施，将在未来作为付费选项提供。"
+      "q": "能批量处理多张图片吗？",
+      "a": "网页端一次处理一张图片。批量处理请使用开源命令行工具，一条命令即可处理整个目录。"
     }
   },
   "error": {
-    "title": "出了点问题",
+    "title": "出错了",
     "retry": "重试",
     "dismiss": "关闭",
-    "fileTooLarge": "文件太大。最大支持 15 MB。",
-    "invalidFormat": "无效的文件格式。请上传 PNG、JPG 或 WebP 文件。",
-    "uploadFailed": "上传图片失败。请重试。",
-    "processFailed": "处理失败。请重试。"
+    "fileTooLarge": "文件过大，限制 15 MB。",
+    "invalidFormat": "不支持的格式，请使用 PNG、JPG 或 WebP。",
+    "uploadFailed": "上传失败，请检查网络。",
+    "processFailed": "处理出错，请重试。"
   },
   "footer": {
-    "built": "基于 remove-ai-watermarks 构建",
-    "privacy": "上传的图片将在 60 分钟内自动删除。我们从不存储或出售您的数据。",
-    "github": "在 GitHub 上查看"
+    "privacy": "文件在 60 分钟内自动删除，不会存储、分享或出售任何数据。"
   },
   "language": {
     "en": "EN",

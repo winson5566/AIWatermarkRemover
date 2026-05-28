@@ -1,128 +1,109 @@
 {
   "app": {
     "title": "AI Watermark Remover",
-    "description": "Supprimez les filigranes IA visibles et invisibles des images"
+    "description": "Nettoyez vos images générées par IA en un clic — effacez les filigranes, supprimez les métadonnées, retirez les étiquettes. Gratuit et ouvert."
   },
   "header": {
     "title": "AI Watermark Remover"
   },
+  "hero": {
+    "badge": "Gratuit et Ouvert",
+    "cta": "Nettoyer l'image"
+  },
   "upload": {
-    "title": "Téléchargez votre image",
-    "dropzone": "Cliquez pour télécharger ou glissez-déposez",
-    "formats": "PNG, JPG ou WebP jusqu'à 15 Mo",
+    "dropzone": "Déposez une image ici ou cliquez pour parcourir",
+    "formats": "PNG · JPG · WebP — Max 15 Mo",
     "uploading": "Téléchargement..."
   },
   "detection": {
-    "title": "Résultats de détection",
-    "scanning": "Recherche de filigranes...",
-    "found": "Filigranes IA détectés",
-    "none": "Aucun filigrane IA détecté",
-    "clean": "Votre image semble propre",
-    "visible": "Filigrane visible",
-    "metadata": "Métadonnées IA",
-    "details": "Afficher les détails",
-    "confidence": "Confiance"
+    "title": "Résultats d'analyse",
+    "scanning": "Analyse de l'image...",
+    "found": "Filigranes détectés",
+    "none": "Rien détecté",
+    "clean": "Aucun filigrane IA ni signature de métadonnées reconnaissable trouvé dans cette image.",
+    "visible": "Marque visible",
+    "metadata": "Données intégrées",
+    "details": "Voir les détails",
+    "confidence": "Certitude"
   },
   "mode": {
-    "title": "Choisir le mode de traitement",
-    "quick": "Nettoyage rapide",
-    "quickDesc": "Supprime les logos IA visibles et les étiquettes 'Créé avec IA', efface les métadonnées",
-    "quickTime": "~2 secondes",
-    "full": "Tout-en-un",
-    "fullDesc": "Perturbe également les filigranes invisibles (SynthID, etc.) par régénération IA",
-    "fullComingSoon": "Bientôt disponible",
+    "title": "Méthode de nettoyage",
+    "standard": "Nettoyage standard",
+    "standardDesc": "Efface les superpositions visibles et les métadonnées intégrées. Fonctionne en quelques secondes sur CPU.",
+    "deep": "Nettoyage profond",
+    "deepDesc": "Régénération au niveau des pixels pour perturber les filigranes invisibles. Nécessite un GPU.",
+    "deepBadge": "Bientôt disponible",
+    "process": "Nettoyer l'image",
     "free": "Gratuit",
-    "gpu": "GPU",
-    "process": "Traiter l'image"
+    "gpu": "GPU"
   },
-  "processing": {
-    "title": "Traitement de votre image...",
-    "analyzing": "Analyse de l'image...",
-    "removing": "Suppression des filigranes visibles...",
-    "stripping": "Effacement des métadonnées...",
-    "finalizing": "Finalisation...",
-    "cancel": "Annuler"
+  "progress": {
+    "title": "Nettoyage en cours",
+    "step1": "Lecture des données image...",
+    "step2": "Effacement des marques visibles...",
+    "step3": "Suppression des métadonnées...",
+    "step4": "Finalisation..."
   },
   "result": {
-    "before": "Avant",
-    "after": "Après",
-    "download": "Télécharger l'image nettoyée",
-    "newImage": "Traiter une nouvelle image"
+    "before": "Original",
+    "after": "Nettoyée",
+    "download": "Télécharger le résultat",
+    "newImage": "Nettoyer une autre image"
   },
   "features": {
-    "title": "Ce que nous supprimons",
+    "title": "Comment ça marche",
     "visible": {
-      "title": "Filigranes IA visibles",
-      "desc": "Effacez les superpositions visibles comme le logo étoilé de Google Gemini et les bandes de texte Doubao des images générées par IA."
+      "title": "Marques visibles",
+      "desc": "La détection par correspondance de motifs localise les logos, étoiles et badges de texte, puis le remplissage conscient du contenu comble la région de façon transparente."
     },
     "invisible": {
-      "title": "Filigranes invisibles",
-      "desc": "Perturbez les marqueurs au niveau des pixels comme SynthID et StableSignature intégrés dans les images générées par IA."
+      "title": "Signaux cachés",
+      "desc": "La régénération dans le domaine des pixels perturbe les motifs intégrés comme SynthID tout en préservant la qualité à résolution native."
     },
     "metadata": {
-      "title": "Métadonnées et provenance IA",
-      "desc": "Supprimez les informations d'identification C2PA, les balises EXIF IA et les blocs de texte PNG qui étiquettent les images comme générées par IA."
+      "title": "Couches de données",
+      "desc": "Manifestes C2PA, balises EXIF, blocs de texte PNG — toutes les métadonnées d'origine IA sont identifiées et supprimées du fichier."
     }
   },
-  "table": {
-    "title": "Capacités de détection et de suppression",
-    "signal": "Signal IA",
-    "layer": "Couche",
-    "detection": "Détection",
-    "removal": "Suppression",
-    "yes": "Oui",
-    "free": "Gratuit",
-    "limited": "Limité",
-    "comingSoon": "Bientôt disponible",
-    "rows": {
-      "gemini": "Étoile Gemini",
-      "doubao": "Bande de texte Doubao",
-      "c2pa": "Identifiants C2PA",
-      "exif": "Balises EXIF/XMP IA",
-      "png": "Blocs de texte PNG",
-      "synthid": "SynthID / Invisible"
-    }
+  "platforms": {
+    "title": "Plateformes prises en charge",
+    "subtitle": "Gère les formats de filigrane des principales plateformes d'IA générative.",
+    "items": ["ChatGPT / DALL·E", "Google Gemini", "Midjourney", "Stable Diffusion", "Adobe Firefly", "xAI Grok", "Doubao"]
   },
   "faq": {
-    "title": "Foire aux questions",
+    "title": "Questions fréquentes",
     "q1": {
-      "q": "Que fait AI Watermark Remover ?",
-      "a": "Il détecte et supprime les filigranes liés à l'IA des images générées par des modèles d'IA. Cela inclut les superpositions visibles (comme l'étoile Gemini), les filigranes invisibles au niveau des pixels (comme SynthID) et les métadonnées intégrées (comme les manifestes C2PA et les balises EXIF)."
+      "q": "Comment fonctionne le processus de nettoyage ?",
+      "a": "Nous exécutons un pipeline en deux phases. D'abord, les superpositions visibles sont détectées par correspondance de motifs et remplies avec les pixels environnants. Ensuite, les champs de métadonnées — C2PA, EXIF, blocs PNG — sont supprimés. Le résultat est un fichier propre sans étiquettes d'origine IA."
     },
     "q2": {
-      "q": "Quels modèles d'IA sont pris en charge ?",
-      "a": "ChatGPT / DALL-E, Google Gemini, Midjourney, Stable Diffusion, Adobe Firefly, xAI Grok et Doubao. Nous gérons également la norme C2PA Content Credentials utilisée dans de nombreux outils d'IA."
+      "q": "Le nettoyage réduit-il la qualité d'image ?",
+      "a": "Le nettoyage standard ne touche que la petite zone autour du filigrane. Le reste est identique à l'original. Le nettoyage profond régénère à résolution native avec préservation de la qualité."
     },
     "q3": {
-      "q": "Quelle est la différence entre Nettoyage rapide et Tout-en-un ?",
-      "a": "Le nettoyage rapide supprime les filigranes visibles et les métadonnées sur CPU en quelques secondes — c'est gratuit. Tout-en-un ajoute la perturbation des filigranes invisibles via la régénération d'image par GPU, offrant un nettoyage plus complet."
+      "q": "Quels types et tailles de fichiers sont acceptés ?",
+      "a": "PNG, JPEG et WebP. Maximum 15 Mo par fichier. Le PNG est recommandé pour de meilleurs résultats avec les filigranes invisibles."
     },
     "q4": {
-      "q": "Quels formats d'image sont pris en charge ?",
-      "a": "Fichiers PNG, JPEG et WebP jusqu'à 15 Mo."
+      "q": "Que deviennent mes images téléchargées ?",
+      "a": "Les images sont traitées en mémoire quand c'est possible. Les fichiers temporaires sont supprimés dans les 60 minutes. Rien n'est stocké, partagé, vendu ou utilisé pour l'entraînement."
     },
     "q5": {
-      "q": "Mes données sont-elles en sécurité ? Qu'arrive-t-il aux images téléchargées ?",
-      "a": "Vos images sont traitées sur notre serveur et automatiquement supprimées dans les 60 minutes. Nous ne stockons, ne partageons ni ne vendons jamais vos images. Le traitement s'effectue en mémoire lorsque c'est possible, et les fichiers temporaires sont nettoyés automatiquement."
-    },
-    "q6": {
-      "q": "Est-ce vraiment gratuit ?",
-      "a": "Oui ! Le mode Nettoyage rapide (filigranes visibles + métadonnées) est entièrement gratuit. Le mode Tout-en-un pour les filigranes invisibles nécessite une infrastructure GPU et sera disponible en option payante à l'avenir."
+      "q": "Puis-je traiter plusieurs images à la fois ?",
+      "a": "L'interface web traite une image à la fois. Pour le traitement par lots, essayez l'outil CLI open-source — il fonctionne sur des répertoires entiers en une seule commande."
     }
   },
   "error": {
     "title": "Quelque chose s'est mal passé",
     "retry": "Réessayer",
     "dismiss": "Ignorer",
-    "fileTooLarge": "Le fichier est trop volumineux. La taille maximale est de 15 Mo.",
-    "invalidFormat": "Format de fichier invalide. Veuillez télécharger un fichier PNG, JPG ou WebP.",
-    "uploadFailed": "Échec du téléchargement de l'image. Veuillez réessayer.",
-    "processFailed": "Le traitement a échoué. Veuillez réessayer."
+    "fileTooLarge": "Fichier trop volumineux. Limite 15 Mo.",
+    "invalidFormat": "Format non pris en charge. Utilisez PNG, JPG ou WebP.",
+    "uploadFailed": "Échec du téléchargement. Vérifiez votre connexion.",
+    "processFailed": "Erreur de traitement. Réessayez."
   },
   "footer": {
-    "built": "Construit avec remove-ai-watermarks",
-    "privacy": "Les images téléchargées sont automatiquement supprimées dans les 60 minutes. Nous ne stockons ni ne vendons jamais vos données.",
-    "github": "Voir sur GitHub"
+    "privacy": "Les fichiers sont supprimés automatiquement sous 60 minutes. Rien n'est stocké, partagé ni vendu."
   },
   "language": {
     "en": "EN",

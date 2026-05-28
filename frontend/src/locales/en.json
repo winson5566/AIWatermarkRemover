@@ -1,129 +1,109 @@
 {
   "app": {
     "title": "AI Watermark Remover",
-    "description": "Remove visible and invisible AI watermarks from images"
+    "description": "Clean your AI-generated images in one click — strip watermarks, wipe metadata, remove labels. Free and open."
   },
   "header": {
     "title": "AI Watermark Remover"
   },
+  "hero": {
+    "badge": "Free & Open",
+    "cta": "Clean Image"
+  },
   "upload": {
-    "title": "Upload your image",
-    "dropzone": "Click to upload or drag and drop",
-    "formats": "PNG, JPG, or WebP up to 15 MB",
+    "dropzone": "Drop an image here or click to browse",
+    "formats": "PNG · JPG · WebP — Max 15 MB",
     "uploading": "Uploading..."
   },
   "detection": {
-    "title": "Detection Results",
-    "scanning": "Scanning for watermarks...",
-    "found": "AI watermarks detected",
-    "none": "No AI watermarks detected",
-    "clean": "Your image appears to be clean",
-    "visible": "Visible watermark",
-    "metadata": "AI metadata",
-    "details": "Show details",
-    "hideDetails": "Hide details",
+    "title": "Scan results",
+    "scanning": "Analyzing image...",
+    "found": "Watermarks found",
+    "none": "Nothing detected",
+    "clean": "We didn't find any recognizable AI watermarks or metadata signatures in this image.",
+    "visible": "Visible mark",
+    "metadata": "Embedded data",
+    "details": "See details",
     "confidence": "Confidence"
   },
   "mode": {
-    "title": "Choose processing mode",
-    "quick": "Quick Clean",
-    "quickDesc": "Removes visible AI logos and 'Made with AI' labels, strips metadata",
-    "quickTime": "~2 seconds",
-    "full": "All-in-One",
-    "fullDesc": "Also disrupts invisible watermarks (SynthID, etc.) via AI regeneration",
-    "fullComingSoon": "Coming Soon",
+    "title": "Cleaning method",
+    "standard": "Standard Clean",
+    "standardDesc": "Erases visible overlays and embedded metadata. Works in seconds on CPU.",
+    "deep": "Deep Clean",
+    "deepDesc": "Pixel-level regeneration to disrupt invisible watermarks. GPU required.",
+    "deepBadge": "Coming Later",
+    "process": "Clean Image",
     "free": "Free",
-    "gpu": "GPU",
-    "process": "Process Image"
+    "gpu": "GPU"
   },
-  "processing": {
-    "title": "Processing your image...",
-    "analyzing": "Analyzing image...",
-    "removing": "Removing visible watermarks...",
-    "stripping": "Stripping metadata...",
-    "finalizing": "Finalizing...",
-    "cancel": "Cancel"
+  "progress": {
+    "title": "Cleaning in progress",
+    "step1": "Reading image data...",
+    "step2": "Erasing visible marks...",
+    "step3": "Wiping metadata...",
+    "step4": "Finalizing output..."
   },
   "result": {
-    "before": "Before",
-    "after": "After",
-    "download": "Download Clean Image",
-    "newImage": "Process New Image"
+    "before": "Original",
+    "after": "Cleaned",
+    "download": "Download Result",
+    "newImage": "Start over with a new image"
   },
   "features": {
-    "title": "What we remove",
+    "title": "How it works",
     "visible": {
-      "title": "Visible AI Watermarks",
-      "desc": "Erase visual overlays like the Google Gemini sparkle and Doubao text strips from AI-generated images."
+      "title": "Visible marks",
+      "desc": "Pattern-matched detection locates logos, sparkles, and text badges, then content-aware inpainting fills the region seamlessly."
     },
     "invisible": {
-      "title": "Invisible Watermarks",
-      "desc": "Disrupt pixel-level markers like SynthID and StableSignature embedded in AI-generated images."
+      "title": "Hidden signals",
+      "desc": "Pixel-domain regeneration disrupts embedded patterns like SynthID while preserving image quality at native resolution."
     },
     "metadata": {
-      "title": "AI Metadata & Provenance",
-      "desc": "Strip C2PA Content Credentials, EXIF AI tags, and PNG text chunks that label images as AI-generated."
+      "title": "Data layers",
+      "desc": "C2PA manifests, EXIF tags, PNG text chunks — all AI-origin metadata is identified and stripped from the file."
     }
   },
-  "table": {
-    "title": "Detection & Removal Capabilities",
-    "signal": "AI Signal",
-    "layer": "Layer",
-    "detection": "Detection",
-    "removal": "Removal",
-    "yes": "Yes",
-    "free": "Free",
-    "limited": "Limited",
-    "comingSoon": "Coming soon",
-    "rows": {
-      "gemini": "Gemini sparkle",
-      "doubao": "Doubao text strip",
-      "c2pa": "C2PA Content Credentials",
-      "exif": "EXIF/XMP AI tags",
-      "png": "PNG text chunks",
-      "synthid": "SynthID / Invisible"
-    }
+  "platforms": {
+    "title": "Supported sources",
+    "subtitle": "Handles watermark formats across major generative AI platforms.",
+    "items": ["ChatGPT / DALL·E", "Google Gemini", "Midjourney", "Stable Diffusion", "Adobe Firefly", "xAI Grok", "Doubao"]
   },
   "faq": {
-    "title": "Frequently Asked Questions",
+    "title": "Questions you might have",
     "q1": {
-      "q": "What does AI Watermark Remover do?",
-      "a": "It detects and removes AI-related watermarks from images generated by AI models. This includes visible overlays (like the Gemini sparkle), invisible pixel-level watermarks (like SynthID), and embedded metadata (like C2PA manifests and EXIF tags)."
+      "q": "How does the cleaning process work?",
+      "a": "We run a two-phase pipeline. First, visible overlays are detected via pattern matching and filled with surrounding pixels. Then metadata fields — C2PA, EXIF, PNG chunks — are stripped. The output is a clean file with no AI-origin labels."
     },
     "q2": {
-      "q": "Which AI models are supported?",
-      "a": "ChatGPT / DALL-E, Google Gemini, Midjourney, Stable Diffusion, Adobe Firefly, xAI Grok, and Doubao. We also handle the C2PA Content Credentials standard used across many AI tools."
+      "q": "Does cleaning reduce image quality?",
+      "a": "Standard Clean only touches the tiny region around the watermark. The rest of the image is pixel-identical to the original. Deep Clean regenerates at native resolution with quality preservation."
     },
     "q3": {
-      "q": "What's the difference between Quick Clean and All-in-One?",
-      "a": "Quick Clean removes visible watermarks and metadata on CPU in seconds — it's free. All-in-One adds invisible watermark disruption using AI-powered image regeneration on GPU, which provides more thorough cleaning."
+      "q": "What file types and sizes are accepted?",
+      "a": "PNG, JPEG, and WebP. Maximum 15 MB per file. PNG is recommended for best results with invisible watermarks."
     },
     "q4": {
-      "q": "Which image formats are supported?",
-      "a": "PNG, JPEG, and WebP files up to 15 MB in size."
+      "q": "What happens to my uploaded images?",
+      "a": "Images are processed in memory where possible. Temporary files are purged within 60 minutes. Nothing is stored, shared, sold, or used for training."
     },
     "q5": {
-      "q": "Is my data safe? What happens to uploaded images?",
-      "a": "Your images are processed on our server and automatically deleted within 60 minutes. We never store, share, or sell your images. Processing happens in memory where possible, and temporary files are cleaned up automatically."
-    },
-    "q6": {
-      "q": "Is it really free?",
-      "a": "Yes! Quick Clean mode (visible watermarks + metadata) is completely free. The All-in-One mode for invisible watermarks requires GPU infrastructure and will be available as a paid option in the future."
+      "q": "Can I process multiple images at once?",
+      "a": "The web interface handles one image at a time. For batch processing, try the open-source CLI tool — it works on entire directories in one command."
     }
   },
   "error": {
     "title": "Something went wrong",
     "retry": "Try again",
     "dismiss": "Dismiss",
-    "fileTooLarge": "File is too large. Maximum size is 15 MB.",
-    "invalidFormat": "Invalid file format. Please upload PNG, JPG, or WebP.",
-    "uploadFailed": "Failed to upload image. Please try again.",
-    "processFailed": "Processing failed. Please try again."
+    "fileTooLarge": "File too large. 15 MB limit.",
+    "invalidFormat": "Unsupported format. Use PNG, JPG, or WebP.",
+    "uploadFailed": "Upload failed. Check your connection.",
+    "processFailed": "Processing error. Try again."
   },
   "footer": {
-    "built": "Built with remove-ai-watermarks",
-    "privacy": "Uploaded images are automatically deleted within 60 minutes. We never store or sell your data.",
-    "github": "View on GitHub"
+    "privacy": "Files are auto-deleted within 60 minutes. Nothing is stored, shared, or sold."
   },
   "language": {
     "en": "EN",

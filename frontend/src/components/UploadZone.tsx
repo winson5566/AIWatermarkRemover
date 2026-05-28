@@ -42,39 +42,34 @@ export default function UploadZone() {
   });
 
   return (
-    <div>
+    <div className="mx-auto max-w-lg">
       <div
         {...getRootProps()}
-        className={`relative cursor-pointer rounded-2xl border-2 border-dashed p-12 text-center transition-all duration-300 sm:p-16 ${
+        className={`relative cursor-pointer rounded-2xl border-2 border-dashed p-10 text-center transition-all duration-300 ${
           isDragActive
-            ? "border-brand-400 bg-brand-500/5 shadow-[0_0_40px_rgba(99,102,241,0.15)]"
+            ? "border-brand-400 bg-brand-500/5 shadow-[0_0_50px_rgba(99,102,241,0.15)]"
             : localError
               ? "border-red-500/30 bg-red-500/3"
-              : "border-slate-600/50 glass hover:border-brand-500/40 hover:shadow-[0_0_30px_rgba(99,102,241,0.1)]"
+              : "border-slate-600/50 glass hover:border-brand-500/40 hover:shadow-[0_0_30px_rgba(99,102,241,0.08)]"
         } ${uploading ? "pointer-events-none" : ""}`}
       >
         <input {...getInputProps()} />
         {uploading ? (
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-3 py-4">
             <Spinner size="lg" />
-            <p className="text-base font-medium text-slate-400">{t("upload.uploading")}</p>
+            <p className="text-sm text-slate-400">{t("upload.uploading")}</p>
           </div>
         ) : (
-          <div className="flex flex-col items-center gap-4">
-            <div
-              className={`flex h-16 w-16 items-center justify-center rounded-2xl transition-all ${
-                isDragActive
-                  ? "bg-brand-500/10 text-brand-400 shadow-[0_0_20px_rgba(99,102,241,0.2)]"
-                  : "bg-surface-100 text-slate-500"
-              }`}
+          <div className="flex flex-col items-center gap-3 py-2">
+            <svg
+              className={`h-10 w-10 transition-colors ${isDragActive ? "text-brand-400" : "text-slate-500"}`}
+              fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"
             >
-              <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z" />
-              </svg>
-            </div>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
+            </svg>
             <div>
-              <p className="text-base font-medium text-slate-300">{t("upload.dropzone")}</p>
-              <p className="mt-1 text-sm text-slate-500">{t("upload.formats")}</p>
+              <p className="text-sm text-slate-300">{t("upload.dropzone")}</p>
+              <p className="mt-1.5 text-xs text-slate-500">{t("upload.formats")}</p>
             </div>
           </div>
         )}
