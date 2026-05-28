@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - STORAGE_DIR=/app/uploads
+      - MAX_FILE_SIZE_MB=15
+      - CLEANUP_TTL_MINUTES=60
+      - LOG_LEVEL=info
+    volumes:
+      - uploads:/app/uploads
+    restart: unless-stopped
+
+volumes:
+  uploads:
