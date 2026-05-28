@@ -15,6 +15,43 @@ import CapabilityTable from "./components/CapabilityTable";
 import FaqSection from "./components/FaqSection";
 import ErrorBanner from "./components/ErrorBanner";
 
+function HeroSection() {
+  const { t } = useTranslation();
+
+  return (
+    <section className="relative pt-16 pb-8 sm:pt-24 sm:pb-12">
+      <div className="mx-auto max-w-3xl text-center">
+        <h1 className="text-3xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+          <span className="gradient-text">{t("app.title")}</span>
+        </h1>
+        <p className="mx-auto mt-5 max-w-lg text-sm text-slate-400 sm:text-base">
+          {t("app.description")}
+        </p>
+        <div className="mx-auto mt-10 h-px w-16 bg-gradient-to-r from-transparent via-brand-500/50 to-transparent" />
+        <div className="mt-10">
+          <UploadZone />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Section({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <section className={`relative py-12 sm:py-16 ${className}`}>
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">{children}</div>
+    </section>
+  );
+}
+
+function Divider() {
+  return (
+    <div className="mx-auto max-w-5xl px-4 sm:px-6">
+      <div className="h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+    </div>
+  );
+}
+
 function AppContent() {
   const state = useAppState();
   const dispatch = useAppDispatch();
@@ -28,104 +65,77 @@ function AppContent() {
     </div>
   );
 
-  const renderMainContent = () => {
-    const { phase } = state;
+  if (state.phase !== "idle") {
+    let title = "";
+    if (state.phase === "uploaded" || state.phase === "detecting") title = t("detection.title");
+    else if (state.phase === "detected") title = t("mode.title");
+    else if (state.phase === "processing") title = t("processing.title");
+    else if (state.phase === "completed") title = "";
+    else if (state.phase === "error") title = t("error.title");
 
-    switch (phase) {
-      case "idle":
-        return (
-          <>
-            <UploadZone />
-            <div className="mt-20 space-y-20">
-              <FeatureCards />
-              <CapabilityTable />
-              <FaqSection />
-            </div>
-          </>
-        );
+    return (
+      <div className="flex min-h-screen flex-col bg-surface">
+        <div className="fixed inset-0 overflow-hidden pointer-events-none">
+          <div className="orb orb-1" />
+          <div className="orb orb-2" />
+          <div className="orb orb-3" />
+          <div className="absolute inset-0 bg-grid" />
+        </div>
 
-      case "uploaded":
-      case "detecting":
-        return (
-          <>
+        <Header />
+
+        <main className="relative flex-1 pt-20 pb-12">
+          <div className="mx-auto max-w-3xl px-4 sm:px-6">
+            {title && (
+              <div className="mb-6">
+                <h1 className="text-xl font-bold text-slate-100 sm:text-2xl">{title}</h1>
+              </div>
+            )}
             {errorBanner}
-            <div className="space-y-5">
-              <FilePreview />
-              <DetectionResult />
-            </div>
-          </>
-        );
 
-      case "detected":
-        return (
-          <>
-            {errorBanner}
-            <div className="space-y-5">
-              <FilePreview />
-              <DetectionResult />
-              <ModeSelector />
-            </div>
-          </>
-        );
-
-      case "processing":
-        return (
-          <>
-            {errorBanner}
-            <div className="space-y-5">
-              <FilePreview />
-              <ProcessingProgress />
-            </div>
-          </>
-        );
-
-      case "completed":
-        return (
-          <>
-            {errorBanner}
-            <div className="space-y-5">
-              <ComparisonView />
-              <DownloadButton />
-            </div>
-          </>
-        );
-
-      case "error":
-        return (
-          <>
-            {errorBanner}
-            {state.fileId && state.previewUrl ? (
+            {(state.phase === "uploaded" || state.phase === "detecting") && (
               <div className="space-y-5">
                 <FilePreview />
-                {state.detection && <DetectionResult />}
+                <DetectionResult />
               </div>
-            ) : (
-              <UploadZone />
             )}
-          </>
-        );
 
-      default:
-        return null;
-    }
-  };
+            {state.phase === "detected" && (
+              <div className="space-y-5">
+                <FilePreview />
+                <DetectionResult />
+                <ModeSelector />
+              </div>
+            )}
 
-  const getPhaseTitle = () => {
-    const { phase } = state;
-    if (phase === "idle") return null;
-    if (phase === "uploaded" || phase === "detecting") return t("detection.title");
-    if (phase === "detected") return t("mode.title");
-    if (phase === "processing") return t("processing.title");
-    if (phase === "completed") return "";
-    if (phase === "error" && !state.fileId) return t("error.title");
-    return "";
-  };
+            {state.phase === "processing" && (
+              <div className="space-y-5">
+                <FilePreview />
+                <ProcessingProgress />
+              </div>
+            )}
 
-  const phaseTitle = getPhaseTitle();
+            {state.phase === "completed" && (
+              <div className="space-y-5">
+                <ComparisonView />
+                <DownloadButton />
+              </div>
+            )}
+
+            {state.phase === "error" && (
+              <div className="space-y-5">
+                <UploadZone />
+              </div>
+            )}
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="flex min-h-screen flex-col bg-surface">
-      {/* Background effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="orb orb-1" />
         <div className="orb orb-2" />
@@ -135,31 +145,20 @@ function AppContent() {
 
       <Header />
 
-      <main className="relative flex-1 pt-20 pb-16">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          {/* Hero section */}
-          {state.phase === "idle" && (
-            <div className="mb-12 text-center pt-8 sm:pt-16">
-              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-                <span className="gradient-text">{t("app.title")}</span>
-              </h1>
-              <p className="mt-5 text-base text-slate-400 sm:text-lg max-w-xl mx-auto">
-                {t("app.description")}
-              </p>
-              {/* Decorative line */}
-              <div className="mx-auto mt-8 h-px w-24 bg-gradient-to-r from-transparent via-brand-500 to-transparent" />
-            </div>
-          )}
-
-          {/* Phase title for non-idle states */}
-          {phaseTitle && (
-            <div className="mb-6">
-              <h1 className="text-xl font-bold text-slate-100 sm:text-2xl">{phaseTitle}</h1>
-            </div>
-          )}
-
-          {renderMainContent()}
-        </div>
+      <main className="relative flex-1 pb-12">
+        <HeroSection />
+        <Divider />
+        <Section>
+          <FeatureCards />
+        </Section>
+        <Divider />
+        <Section>
+          <CapabilityTable />
+        </Section>
+        <Divider />
+        <Section>
+          <FaqSection />
+        </Section>
       </main>
 
       <Footer />
