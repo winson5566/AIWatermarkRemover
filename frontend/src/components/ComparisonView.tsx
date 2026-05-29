@@ -6,25 +6,25 @@ export default function ComparisonView() {
   const { previewUrl, resultUrl } = useAppState();
 
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200 glass">
+    <div className="overflow-hidden rounded-lg border border-line bg-surface">
       <div className="grid gap-6 p-5 sm:grid-cols-2 sm:gap-8 sm:p-6">
         <div>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">{t("result.before")}</p>
-          <div className="overflow-hidden rounded-lg border border-slate-200 bg-surface-100">
+          <p className="label mb-3">{t("result.before")}</p>
+          <div className="overflow-hidden rounded-md border border-line bg-surface-2">
             {previewUrl ? (
-              <img src={previewUrl} alt="Original" className="w-full object-contain max-h-[60vh]" />
+              <img src={previewUrl} alt="Original" className="max-h-[60vh] w-full object-contain" />
             ) : (
-              <div className="flex h-48 items-center justify-center text-sm text-slate-500">—</div>
+              <div className="flex h-48 items-center justify-center text-sm text-ink-dim">—</div>
             )}
           </div>
         </div>
         <div>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-brand-600">{t("result.after")}</p>
-          <div className="overflow-hidden rounded-lg border border-brand-500/20 bg-surface-100">
+          <p className="label mb-3 !text-accent">{t("result.after")}</p>
+          <div className="overflow-hidden rounded-md border border-accent/40 bg-surface-2">
             {resultUrl ? (
-              <img src={resultUrl} alt="Result" className="w-full object-contain max-h-[60vh]" />
+              <img src={resultUrl} alt="Result" className="max-h-[60vh] w-full object-contain" />
             ) : (
-              <div className="flex h-48 items-center justify-center text-sm text-slate-500">—</div>
+              <div className="flex h-48 items-center justify-center text-sm text-ink-dim">—</div>
             )}
           </div>
         </div>

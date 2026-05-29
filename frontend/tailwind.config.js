@@ -4,56 +4,33 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+        sans: ['"Geist"', "ui-sans-serif", "system-ui", "-apple-system", "sans-serif"],
+        mono: ['"Geist Mono"', "ui-monospace", '"SF Mono"', "Menlo", "monospace"],
       },
       colors: {
-        brand: {
-          50: "#eef2ff",
-          100: "#e0e7ff",
-          200: "#c7d2fe",
-          300: "#a5b4fc",
-          400: "#818cf8",
-          500: "#6366f1",
-          600: "#4f46e5",
-          700: "#4338ca",
-          800: "#3730a3",
-          900: "#312e81",
+        bg: "#f7f8f8",
+        surface: {
+          DEFAULT: "#ffffff",
+          2: "#f1f2f3",
+          3: "#e8eaec",
+        },
+        line: {
+          DEFAULT: "#e3e5e8",
+          strong: "#cdd0d4",
+        },
+        ink: {
+          DEFAULT: "#18181b",
+          muted: "#56575c",
+          dim: "#8b8f96",
         },
         accent: {
-          400: "#22d3ee",
-          500: "#06b6d4",
-          600: "#0891b2",
-        },
-        surface: {
-          DEFAULT: "#f8fafc",
-          50: "#ffffff",
-          100: "#f1f5f9",
-          200: "#e2e8f0",
-          300: "#cbd5e1",
-          400: "#94a3b8",
+          DEFAULT: "#059669",
+          hover: "#10b981",
+          soft: "rgba(5, 150, 105, 0.12)",
         },
       },
       borderRadius: {
-        card: "1rem",
-      },
-      animation: {
-        "float": "float 6s ease-in-out infinite",
-        "glow": "glow 2s ease-in-out infinite alternate",
-        "grid": "grid 20s linear infinite",
-      },
-      keyframes: {
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-20px)" },
-        },
-        glow: {
-          "0%": { boxShadow: "0 0 20px rgba(99, 102, 241, 0.3)" },
-          "100%": { boxShadow: "0 0 40px rgba(6, 182, 212, 0.4)" },
-        },
-        grid: {
-          "0%": { transform: "translateY(0)" },
-          "100%": { transform: "translateY(-50%)" },
-        },
+        card: "0.5rem",
       },
     },
   },

@@ -19,20 +19,20 @@ function Hero() {
   const { t } = useTranslation();
 
   return (
-    <section className="relative pt-20 pb-10 sm:pt-28 sm:pb-16">
-      <div className="mx-auto max-w-2xl px-4 text-center sm:px-6">
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-500/20 bg-brand-500/5 px-4 py-1.5 text-xs font-medium text-brand-600">
+    <section className="px-6 pb-16 pt-20 sm:pb-20 lg:px-8 lg:pt-24">
+      <div className="mx-auto max-w-2xl text-center">
+        <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5">
           <span className="relative flex h-1.5 w-1.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
           </span>
-          {t("hero.badge")}
+          <span className="label !text-ink-muted">{t("hero.badge")}</span>
         </div>
 
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-          <span className="gradient-text">{t("app.title")}</span>
+        <h1 className="text-grad text-4xl font-medium leading-[1.05] tracking-[-0.03em] sm:text-5xl lg:text-6xl">
+          {t("app.title")}
         </h1>
-        <p className="mx-auto mt-4 max-w-lg text-sm text-slate-500 sm:text-base">
+        <p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-ink-muted">
           {t("app.description")}
         </p>
 
@@ -44,14 +44,8 @@ function Hero() {
   );
 }
 
-function Background() {
-  return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      <div className="orb orb-1" />
-      <div className="orb orb-2" />
-      <div className="absolute inset-0 bg-grid" />
-    </div>
-  );
+function Grain() {
+  return <div className="grain pointer-events-none fixed inset-0 z-0 opacity-60" />;
 }
 
 function AppContent() {
@@ -75,12 +69,12 @@ function AppContent() {
     else if (state.phase === "completed") heading = "";
 
     return (
-      <div className="flex min-h-screen flex-col bg-surface">
-        <Background />
+      <div className="relative flex min-h-screen flex-col">
+        <Grain />
         <Header />
-        <main className="relative flex-1 pt-20 pb-12">
-          <div className={`mx-auto px-4 sm:px-6 ${state.phase === "completed" ? "max-w-5xl" : "max-w-2xl"}`}>
-            {heading && <h1 className="mb-6 text-xl font-bold text-slate-900 sm:text-2xl">{heading}</h1>}
+        <main className="relative z-10 flex-1 px-6 pb-16 pt-24 lg:px-8">
+          <div className={`mx-auto ${state.phase === "completed" ? "max-w-5xl" : "max-w-2xl"}`}>
+            {heading && <h1 className="mb-6 text-2xl font-medium tracking-tight">{heading}</h1>}
             {errorBlock}
 
             {(state.phase === "uploaded" || state.phase === "detecting") && (
@@ -110,38 +104,26 @@ function AppContent() {
 
   // --- Idle: landing page ---
   return (
-    <div className="flex min-h-screen flex-col bg-surface">
-      <Background />
+    <div className="relative flex min-h-screen flex-col">
+      <Grain />
       <Header />
-      <main className="relative flex-1">
+      <main className="relative z-10 flex-1">
         <Hero />
 
-        <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-        </div>
-
-        <section className="py-14 sm:py-20">
-          <div className="mx-auto max-w-5xl px-4 sm:px-6">
+        <section className="border-t border-line px-6 py-20 lg:px-8 lg:py-28">
+          <div className="mx-auto max-w-5xl">
             <FeatureCards />
           </div>
         </section>
 
-        <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-        </div>
-
-        <section className="py-14 sm:py-20">
-          <div className="mx-auto max-w-5xl px-4 sm:px-6">
+        <section className="border-t border-line px-6 py-20 lg:px-8 lg:py-28">
+          <div className="mx-auto max-w-5xl">
             <PlatformTags />
           </div>
         </section>
 
-        <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-        </div>
-
-        <section className="py-14 sm:py-20">
-          <div className="mx-auto max-w-3xl px-4 sm:px-6">
+        <section className="border-t border-line px-6 py-20 lg:px-8 lg:py-28">
+          <div className="mx-auto max-w-3xl">
             <FaqSection />
           </div>
         </section>

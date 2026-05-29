@@ -15,39 +15,33 @@ export default function ModeSelector() {
   };
 
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200 glass">
-      <div className="border-b border-slate-200 px-5 py-4">
-        <h3 className="text-base font-semibold text-slate-900">{t("mode.title")}</h3>
+    <div className="overflow-hidden rounded-lg border border-line bg-surface">
+      <div className="border-b border-line bg-surface-2 px-5 py-3">
+        <span className="label !text-ink-muted">{t("mode.title")}</span>
       </div>
 
       <div className="grid gap-4 p-5 sm:grid-cols-2">
         {/* Standard Clean */}
-        <div className="relative flex flex-col rounded-xl border-2 border-brand-500/40 bg-brand-500/5 p-5">
-          <span className="mb-3 inline-flex items-center gap-1 self-start rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-xs font-semibold text-emerald-600">
-            {t("mode.free")}
-          </span>
-          <h4 className="font-semibold text-slate-800">{t("mode.standard")}</h4>
-          <p className="mt-1.5 text-sm text-slate-500">{t("mode.standardDesc")}</p>
+        <div className="relative flex flex-col rounded-md border border-accent bg-accent-soft p-5">
+          <span className="label mb-3 self-start !text-accent">{t("mode.free")}</span>
+          <h4 className="font-medium text-ink">{t("mode.standard")}</h4>
+          <p className="mt-1.5 text-sm text-ink-muted">{t("mode.standardDesc")}</p>
         </div>
 
         {/* Deep Clean */}
-        <div className="relative flex flex-col rounded-xl border-2 border-slate-200 bg-surface-100/50 p-5 opacity-50">
-          <span className="mb-3 inline-flex items-center gap-1 self-start rounded-full bg-purple-500/15 px-2.5 py-0.5 text-xs font-semibold text-purple-600">
-            {t("mode.gpu")}
-          </span>
-          <h4 className="font-semibold text-slate-500">{t("mode.deep")}</h4>
-          <p className="mt-1.5 text-sm text-slate-500">{t("mode.deepDesc")}</p>
-          <span className="mt-3 inline-flex items-center self-start rounded-full bg-amber-500/10 px-2.5 py-0.5 text-xs font-medium text-amber-600">
-            {t("mode.deepBadge")}
-          </span>
+        <div className="relative flex flex-col rounded-md border border-line bg-surface-2 p-5 opacity-60">
+          <span className="label mb-3 self-start">{t("mode.gpu")}</span>
+          <h4 className="font-medium text-ink-muted">{t("mode.deep")}</h4>
+          <p className="mt-1.5 text-sm text-ink-dim">{t("mode.deepDesc")}</p>
+          <span className="label mt-3 self-start !text-amber-600">{t("mode.deepBadge")}</span>
         </div>
       </div>
 
-      <div className="border-t border-slate-200 px-5 py-4">
+      <div className="border-t border-line px-5 py-4">
         <button
           onClick={handleProcess}
           disabled={isProcessing || !fileId}
-          className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 px-6 py-3 text-base font-semibold text-white shadow-lg shadow-brand-500/20 transition-all hover:from-brand-500 hover:to-brand-400 hover:shadow-brand-500/30 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:ring-offset-2 focus:ring-offset-surface disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+          className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-md bg-accent px-6 text-sm font-medium text-[#06281e] transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto"
         >
           {t("mode.process")}
         </button>
