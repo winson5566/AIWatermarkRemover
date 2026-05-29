@@ -9,6 +9,7 @@ import DetectionResult from "./components/DetectionResult";
 import ProcessingProgress from "./components/ProcessingProgress";
 import ComparisonView from "./components/ComparisonView";
 import DownloadButton from "./components/DownloadButton";
+import ModeSelector from "./components/ModeSelector";
 import FeatureCards from "./components/FeatureCards";
 import PlatformTags from "./components/PlatformTags";
 import FaqSection from "./components/FaqSection";
@@ -86,7 +87,7 @@ function AppContent() {
               <div className="space-y-5"><FilePreview /><DetectionResult /></div>
             )}
             {state.phase === "detected" && (
-              <div className="space-y-5"><FilePreview /><DetectionResult /></div>
+              <div className="space-y-5"><FilePreview /><DetectionResult /><ModeSelector /></div>
             )}
             {state.phase === "processing" && (
               <div className="space-y-5"><FilePreview /><ProcessingProgress /></div>
