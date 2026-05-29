@@ -79,7 +79,7 @@ function AppContent() {
         <Background />
         <Header />
         <main className="relative flex-1 pt-20 pb-12">
-          <div className="mx-auto max-w-2xl px-4 sm:px-6">
+          <div className={`mx-auto px-4 sm:px-6 ${state.phase === "completed" ? "max-w-5xl" : "max-w-2xl"}`}>
             {heading && <h1 className="mb-6 text-xl font-bold text-slate-100 sm:text-2xl">{heading}</h1>}
             {errorBlock}
 
