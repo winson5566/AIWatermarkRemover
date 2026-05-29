@@ -82,20 +82,25 @@ class WatermarkService:
                 logger.warning("doubao_engine detection failed: %s", exc)
 
         logger.info(
-            "Visible mark auto: gemini=%.2f (det=%s) doubao=%.2f (det=%s)",
+            "Visible mark select: gemini=%.2f (det=%s) doubao=%.2f (det=%s)",
             gemini_conf, gemini_det, doubao_conf, doubao_det,
         )
 
-        # Auto compete: Doubao wins only when positive and >= Gemini confidence.
-        if doubao_det and doubao_conf >= gemini_conf:
-            return "doubao", True, doubao_conf
+        # Gemini takes priority when its detector fires. It is a specific NCC
+        # template match against the sparkle alpha map, whereas the Doubao
+        # detector is a coarse brightness/coverage heuristic that can
+        # false-positive on a Gemini sparkle. A genuine Doubao text strip does
+        # NOT match the sparkle template, so it correctly falls through to the
+        # Doubao engine below.
         if gemini_det:
             return "gemini", True, gemini_conf
+        if doubao_det:
+            return "doubao", True, doubao_conf
         # Nothing firmly detected — surface the higher-confidence engine so the
         # remover can still take its best (safe, no-op-on-clean) shot.
-        if doubao_conf >= gemini_conf:
-            return ("doubao" if self._doubao is not None else None), False, doubao_conf
-        return ("gemini" if self._engine is not None else None), False, gemini_conf
+        if gemini_conf >= doubao_conf:
+            return ("gemini" if self._engine is not None else None), False, gemini_conf
+        return ("doubao" if self._doubao is not None else None), False, doubao_conf
 
     def detect(self, image_path: Path) -> dict[str, Any]:
         """Detect watermarks on an image file."""
