@@ -11,6 +11,7 @@ import ComparisonView from "./components/ComparisonView";
 import DownloadButton from "./components/DownloadButton";
 import ModeSelector from "./components/ModeSelector";
 import FeatureCards from "./components/FeatureCards";
+import Showcase from "./components/Showcase";
 import PlatformTags from "./components/PlatformTags";
 import FaqSection from "./components/FaqSection";
 import ErrorBanner from "./components/ErrorBanner";
@@ -109,6 +110,12 @@ function AppContent() {
       <Header />
       <main className="relative z-10 flex-1">
         <Hero />
+
+        <section className="border-t border-line px-6 py-20 lg:px-8 lg:py-28">
+          <div className="mx-auto max-w-5xl">
+            <Showcase />
+          </div>
+        </section>
 
         <section className="border-t border-line px-6 py-20 lg:px-8 lg:py-28">
           <div className="mx-auto max-w-5xl">

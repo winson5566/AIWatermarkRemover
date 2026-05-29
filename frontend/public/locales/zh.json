@@ -65,6 +65,13 @@
       "desc": "C2PA 清单、EXIF 标签、PNG 文本块 — 识别并剥离所有 AI 来源的元数据。"
     }
   },
+  "showcase": {
+    "title": "实际效果",
+    "subtitle": "拖动手柄对比。「豆包AI生成」标识被抹除，画面其余部分保持像素级一致。",
+    "original": "原图",
+    "cleaned": "已清理",
+    "hint": "拖动对比"
+  },
   "platforms": {
     "title": "支持来源",
     "subtitle": "覆盖主流生成式 AI 平台的水印格式。",

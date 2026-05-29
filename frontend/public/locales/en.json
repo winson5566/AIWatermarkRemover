@@ -65,6 +65,13 @@
       "desc": "C2PA manifests, EXIF tags, PNG text chunks — all AI-origin metadata is identified and stripped from the file."
     }
   },
+  "showcase": {
+    "title": "See it in action",
+    "subtitle": "Drag the handle to compare. The “豆包AI生成” label is erased while the rest of the photo stays pixel-identical.",
+    "original": "Original",
+    "cleaned": "Cleaned",
+    "hint": "Drag to compare"
+  },
   "platforms": {
     "title": "Supported sources",
     "subtitle": "Handles watermark formats across major generative AI platforms.",

@@ -65,6 +65,13 @@
       "desc": "Manifiestos C2PA, etiquetas EXIF, bloques de texto PNG — todos los metadatos de origen IA son identificados y eliminados del archivo."
     }
   },
+  "showcase": {
+    "title": "Míralo en acción",
+    "subtitle": "Arrastra el control para comparar. La etiqueta «豆包AI生成» se borra y el resto de la foto queda idéntico píxel a píxel.",
+    "original": "Original",
+    "cleaned": "Limpia",
+    "hint": "Arrastra para comparar"
+  },
   "platforms": {
     "title": "Plataformas compatibles",
     "subtitle": "Maneja formatos de marca de agua de las principales plataformas de IA generativa.",

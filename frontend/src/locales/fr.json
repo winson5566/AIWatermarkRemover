@@ -65,6 +65,13 @@
       "desc": "Manifestes C2PA, balises EXIF, blocs de texte PNG — toutes les métadonnées d'origine IA sont identifiées et supprimées du fichier."
     }
   },
+  "showcase": {
+    "title": "Voir le résultat",
+    "subtitle": "Faites glisser la poignée pour comparer. La mention « 豆包AI生成 » est effacée tandis que le reste de la photo reste identique au pixel près.",
+    "original": "Original",
+    "cleaned": "Nettoyée",
+    "hint": "Glissez pour comparer"
+  },
   "platforms": {
     "title": "Plateformes prises en charge",
     "subtitle": "Gère les formats de filigrane des principales plateformes d'IA générative.",
