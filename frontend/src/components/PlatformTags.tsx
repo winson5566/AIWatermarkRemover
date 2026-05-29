@@ -15,7 +15,7 @@ export default function PlatformTags() {
 
   return (
     <div>
-      <div className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-brand-400">
+      <div className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-brand-600">
         {t("platforms.title")}
       </div>
       <p className="mb-6 text-sm text-slate-500">{t("platforms.subtitle")}</p>
@@ -24,7 +24,7 @@ export default function PlatformTags() {
         {PLATFORMS.map((item) => (
           <span
             key={item}
-            className="rounded-full border border-white/[0.06] bg-surface-100 px-4 py-2 text-sm text-slate-300 transition-all hover:border-white/[0.12] hover:bg-surface-200"
+            className="rounded-full border border-slate-200 bg-surface-100 px-4 py-2 text-sm text-slate-700 transition-all hover:border-slate-300 hover:bg-surface-200"
           >
             {item}
           </span>

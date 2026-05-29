@@ -15,35 +15,35 @@ export default function ModeSelector() {
   };
 
   return (
-    <div className="overflow-hidden rounded-xl border border-white/[0.06] glass">
-      <div className="border-b border-white/[0.04] px-5 py-4">
-        <h3 className="text-base font-semibold text-slate-100">{t("mode.title")}</h3>
+    <div className="overflow-hidden rounded-xl border border-slate-200 glass">
+      <div className="border-b border-slate-200 px-5 py-4">
+        <h3 className="text-base font-semibold text-slate-900">{t("mode.title")}</h3>
       </div>
 
       <div className="grid gap-4 p-5 sm:grid-cols-2">
         {/* Standard Clean */}
         <div className="relative flex flex-col rounded-xl border-2 border-brand-500/40 bg-brand-500/5 p-5">
-          <span className="mb-3 inline-flex items-center gap-1 self-start rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-xs font-semibold text-emerald-400">
+          <span className="mb-3 inline-flex items-center gap-1 self-start rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-xs font-semibold text-emerald-600">
             {t("mode.free")}
           </span>
-          <h4 className="font-semibold text-slate-200">{t("mode.standard")}</h4>
-          <p className="mt-1.5 text-sm text-slate-400">{t("mode.standardDesc")}</p>
+          <h4 className="font-semibold text-slate-800">{t("mode.standard")}</h4>
+          <p className="mt-1.5 text-sm text-slate-500">{t("mode.standardDesc")}</p>
         </div>
 
         {/* Deep Clean */}
-        <div className="relative flex flex-col rounded-xl border-2 border-white/[0.04] bg-surface-100/50 p-5 opacity-50">
-          <span className="mb-3 inline-flex items-center gap-1 self-start rounded-full bg-purple-500/15 px-2.5 py-0.5 text-xs font-semibold text-purple-400">
+        <div className="relative flex flex-col rounded-xl border-2 border-slate-200 bg-surface-100/50 p-5 opacity-50">
+          <span className="mb-3 inline-flex items-center gap-1 self-start rounded-full bg-purple-500/15 px-2.5 py-0.5 text-xs font-semibold text-purple-600">
             {t("mode.gpu")}
           </span>
           <h4 className="font-semibold text-slate-500">{t("mode.deep")}</h4>
-          <p className="mt-1.5 text-sm text-slate-600">{t("mode.deepDesc")}</p>
-          <span className="mt-3 inline-flex items-center self-start rounded-full bg-amber-500/10 px-2.5 py-0.5 text-xs font-medium text-amber-500">
+          <p className="mt-1.5 text-sm text-slate-500">{t("mode.deepDesc")}</p>
+          <span className="mt-3 inline-flex items-center self-start rounded-full bg-amber-500/10 px-2.5 py-0.5 text-xs font-medium text-amber-600">
             {t("mode.deepBadge")}
           </span>
         </div>
       </div>
 
-      <div className="border-t border-white/[0.04] px-5 py-4">
+      <div className="border-t border-slate-200 px-5 py-4">
         <button
           onClick={handleProcess}
           disabled={isProcessing || !fileId}

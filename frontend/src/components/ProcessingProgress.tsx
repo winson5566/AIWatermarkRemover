@@ -19,13 +19,13 @@ export default function ProcessingProgress() {
   const isIndeterminate = progress <= 0;
 
   return (
-    <div className="overflow-hidden rounded-xl border border-white/[0.06] glass">
-      <div className="border-b border-white/[0.04] px-5 py-4">
-        <h3 className="text-base font-semibold text-slate-100">{t("progress.title")}</h3>
+    <div className="overflow-hidden rounded-xl border border-slate-200 glass">
+      <div className="border-b border-slate-200 px-5 py-4">
+        <h3 className="text-base font-semibold text-slate-900">{t("progress.title")}</h3>
       </div>
       <div className="space-y-5 px-5 py-6">
         <div>
-          <div className="mb-2 flex items-center justify-between text-sm font-medium text-slate-400">
+          <div className="mb-2 flex items-center justify-between text-sm font-medium text-slate-600">
             {!isIndeterminate && <span>{progress}%</span>}
           </div>
           <div className="h-1.5 w-full overflow-hidden rounded-full bg-surface-200">
@@ -49,12 +49,12 @@ export default function ProcessingProgress() {
               </linearGradient>
             </defs>
           </svg>
-          <p className="text-sm text-slate-400">{stepText}</p>
+          <p className="text-sm text-slate-500">{stepText}</p>
         </div>
         <div className="pt-2">
           <button
             onClick={cancelProcessing}
-            className="rounded-lg border border-white/[0.08] px-4 py-2 text-sm font-medium text-slate-400 transition-colors hover:bg-white/[0.04] hover:text-slate-200"
+            className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-800"
           >
             {t("actions.cancel")}
           </button>

@@ -21,7 +21,7 @@ function Hero() {
   return (
     <section className="relative pt-20 pb-10 sm:pt-28 sm:pb-16">
       <div className="mx-auto max-w-2xl px-4 text-center sm:px-6">
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-500/20 bg-brand-500/5 px-4 py-1.5 text-xs font-medium text-brand-400">
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-500/20 bg-brand-500/5 px-4 py-1.5 text-xs font-medium text-brand-600">
           <span className="relative flex h-1.5 w-1.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
@@ -32,7 +32,7 @@ function Hero() {
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
           <span className="gradient-text">{t("app.title")}</span>
         </h1>
-        <p className="mx-auto mt-4 max-w-lg text-sm text-slate-400 sm:text-base">
+        <p className="mx-auto mt-4 max-w-lg text-sm text-slate-500 sm:text-base">
           {t("app.description")}
         </p>
 
@@ -80,7 +80,7 @@ function AppContent() {
         <Header />
         <main className="relative flex-1 pt-20 pb-12">
           <div className={`mx-auto px-4 sm:px-6 ${state.phase === "completed" ? "max-w-5xl" : "max-w-2xl"}`}>
-            {heading && <h1 className="mb-6 text-xl font-bold text-slate-100 sm:text-2xl">{heading}</h1>}
+            {heading && <h1 className="mb-6 text-xl font-bold text-slate-900 sm:text-2xl">{heading}</h1>}
             {errorBlock}
 
             {(state.phase === "uploaded" || state.phase === "detecting") && (
@@ -117,7 +117,7 @@ function AppContent() {
         <Hero />
 
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <div className="h-px bg-gradient-to-r from-transparent via-white/[0.05] to-transparent" />
+          <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
         </div>
 
         <section className="py-14 sm:py-20">
@@ -127,7 +127,7 @@ function AppContent() {
         </section>
 
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <div className="h-px bg-gradient-to-r from-transparent via-white/[0.05] to-transparent" />
+          <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
         </div>
 
         <section className="py-14 sm:py-20">
@@ -137,7 +137,7 @@ function AppContent() {
         </section>
 
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <div className="h-px bg-gradient-to-r from-transparent via-white/[0.05] to-transparent" />
+          <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
         </div>
 
         <section className="py-14 sm:py-20">

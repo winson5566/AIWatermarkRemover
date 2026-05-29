@@ -13,9 +13,9 @@ const colorMap: Record<string, string> = {
 };
 
 const numColorMap: Record<string, string> = {
-  brand: "text-brand-400/30",
+  brand: "text-brand-600/30",
   accent: "text-accent-400/30",
-  purple: "text-purple-400/30",
+  purple: "text-purple-600/30",
 };
 
 export default function FeatureCards() {
@@ -23,7 +23,7 @@ export default function FeatureCards() {
 
   return (
     <div>
-      <div className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-brand-400">
+      <div className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-brand-600">
         {t("features.title")}
       </div>
 
@@ -39,8 +39,8 @@ export default function FeatureCards() {
               {num}
             </span>
             <div className="relative">
-              <h3 className="text-lg font-semibold text-slate-100">{t(`features.${key}.title`)}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-400">{t(`features.${key}.desc`)}</p>
+              <h3 className="text-lg font-semibold text-slate-900">{t(`features.${key}.title`)}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-500">{t(`features.${key}.desc`)}</p>
             </div>
           </div>
         ))}

@@ -30,7 +30,7 @@ export default function DownloadButton() {
       </button>
       <button
         onClick={() => dispatch({ type: "RESET" })}
-        className="text-sm text-brand-400 transition-colors hover:text-brand-300"
+        className="text-sm text-brand-600 transition-colors hover:text-brand-700"
       >
         {t("actions.startOver")}
       </button>

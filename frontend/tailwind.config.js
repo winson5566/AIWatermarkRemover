@@ -25,12 +25,12 @@ export default {
           600: "#0891b2",
         },
         surface: {
-          DEFAULT: "#0a0a10",
-          50: "#131320",
-          100: "#1a1a2e",
-          200: "#242436",
-          300: "#2e2e44",
-          400: "#3a3a52",
+          DEFAULT: "#f8fafc",
+          50: "#ffffff",
+          100: "#f1f5f9",
+          200: "#e2e8f0",
+          300: "#cbd5e1",
+          400: "#94a3b8",
         },
       },
       borderRadius: {
