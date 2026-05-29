@@ -13,8 +13,10 @@ logger = logging.getLogger(__name__)
 # Import remove_ai_watermarks submodules
 # ---------------------------------------------------------------------------
 _gemini_available = False
+_doubao_available = False
 _metadata_available = False
 _GeminiEngine: Any = None
+_DoubaoEngine: Any = None
 _meta_has: Any = None
 _meta_get: Any = None
 _meta_remove: Any = None
@@ -26,6 +28,14 @@ try:
     logger.info("gemini_engine loaded successfully")
 except ImportError as exc:
     logger.warning("gemini_engine not available: %s", exc)
+
+try:
+    from remove_ai_watermarks.doubao_engine import DoubaoEngine as _DoubaoEngine
+
+    _doubao_available = True
+    logger.info("doubao_engine loaded successfully")
+except ImportError as exc:
+    logger.warning("doubao_engine not available: %s", exc)
 
 try:
     from remove_ai_watermarks.metadata import has_ai_metadata as _meta_has
@@ -41,6 +51,51 @@ except Exception as exc:
 class WatermarkService:
     def __init__(self):
         self._engine = _GeminiEngine() if _gemini_available else None
+        self._doubao = _DoubaoEngine() if _doubao_available else None
+
+    def _select_visible_engine(self, img) -> tuple[str | None, bool, float]:
+        """Pick the best visible-watermark engine for an image (BGR ndarray).
+
+        Mirrors the upstream CLI's ``auto`` behaviour: run both detectors and
+        let Doubao win only when it is positive and at least as confident as
+        Gemini. Returns ``(engine, detected, confidence)`` where engine is
+        ``"doubao"``, ``"gemini"`` or ``None``.
+        """
+        gemini_det, gemini_conf = False, 0.0
+        if self._engine is not None:
+            try:
+                g = self._engine.detect_watermark(img)
+                if g is not None:
+                    gemini_det = bool(getattr(g, "detected", False))
+                    gemini_conf = float(getattr(g, "confidence", 0.0))
+            except Exception as exc:
+                logger.warning("gemini_engine detection failed: %s", exc)
+
+        doubao_det, doubao_conf = False, 0.0
+        if self._doubao is not None:
+            try:
+                d = self._doubao.detect(img)
+                if d is not None:
+                    doubao_det = bool(getattr(d, "detected", False))
+                    doubao_conf = float(getattr(d, "confidence", 0.0))
+            except Exception as exc:
+                logger.warning("doubao_engine detection failed: %s", exc)
+
+        logger.info(
+            "Visible mark auto: gemini=%.2f (det=%s) doubao=%.2f (det=%s)",
+            gemini_conf, gemini_det, doubao_conf, doubao_det,
+        )
+
+        # Auto compete: Doubao wins only when positive and >= Gemini confidence.
+        if doubao_det and doubao_conf >= gemini_conf:
+            return "doubao", True, doubao_conf
+        if gemini_det:
+            return "gemini", True, gemini_conf
+        # Nothing firmly detected — surface the higher-confidence engine so the
+        # remover can still take its best (safe, no-op-on-clean) shot.
+        if doubao_conf >= gemini_conf:
+            return ("doubao" if self._doubao is not None else None), False, doubao_conf
+        return ("gemini" if self._engine is not None else None), False, gemini_conf
 
     def detect(self, image_path: Path) -> dict[str, Any]:
         """Detect watermarks on an image file."""
@@ -51,24 +106,18 @@ class WatermarkService:
         confidence = 0.0
         watermark_type = None
 
-        # --- Visible watermark detection via gemini_engine ---
-        if self._engine is not None:
+        # --- Visible watermark detection (Gemini sparkle + Doubao text) ---
+        if self._engine is not None or self._doubao is not None:
             try:
                 img = cv2.imread(str(image_path))
                 if img is not None:
-                    result = self._engine.detect_watermark(img)
-                    if result is not None:
-                        has_visible = bool(getattr(result, "detected", False))
-                        confidence = float(getattr(result, "confidence", 0.0))
-                        if has_visible:
-                            watermark_type = "gemini_sparkle"
-                        logger.info(
-                            "GeminiEngine detection: detected=%s confidence=%.2f",
-                            has_visible,
-                            confidence,
-                        )
+                    engine, detected, conf = self._select_visible_engine(img)
+                    has_visible = detected
+                    confidence = conf
+                    if detected:
+                        watermark_type = "doubao_text" if engine == "doubao" else "gemini_sparkle"
             except Exception as exc:
-                logger.warning("gemini_engine detection failed: %s", exc)
+                logger.warning("visible detection failed: %s", exc)
         else:
             # Fallback to built-in sparkle detection
             has_visible, confidence, watermark_type = self._detect_sparkle_builtin(image_path)
@@ -113,17 +162,22 @@ class WatermarkService:
         if not image_path.is_file():
             raise FileNotFoundError(f"Image not found: {image_path}")
 
-        if self._engine is not None:
+        if self._engine is not None or self._doubao is not None:
             try:
                 img = cv2.imread(str(image_path))
                 if img is not None:
-                    clean = self._engine.remove_watermark(img)
+                    engine, _detected, _conf = self._select_visible_engine(img)
+                    clean = None
+                    if engine == "doubao" and self._doubao is not None:
+                        clean = self._doubao.remove_watermark(img, inpaint_method="telea")
+                    elif engine == "gemini" and self._engine is not None:
+                        clean = self._engine.remove_watermark(img)
                     if clean is not None:
                         cv2.imwrite(str(output_path), clean)
-                        logger.info("gemini_engine removed visible watermark -> %s", output_path)
+                        logger.info("%s_engine removed visible watermark -> %s", engine, output_path)
                         return output_path
             except Exception as exc:
-                logger.warning("gemini_engine removal failed: %s", exc)
+                logger.warning("visible removal failed: %s", exc)
 
         # Fallback inpainting
         logger.info("Using built-in inpainting for %s", image_path)
