@@ -67,10 +67,12 @@
   },
   "showcase": {
     "title": "实际效果",
-    "subtitle": "拖动手柄对比。「豆包AI生成」标识被抹除，画面其余部分保持像素级一致。",
+    "subtitle": "原图与清理后并排对比，右下角水印区域放大呈现——水印被抹除，画面其余部分保持像素级一致。",
     "original": "原图",
     "cleaned": "已清理",
-    "hint": "拖动对比"
+    "detail": "细节 · 角落",
+    "watermark": "水印",
+    "removed": "已移除"
   },
   "platforms": {
     "title": "支持来源",

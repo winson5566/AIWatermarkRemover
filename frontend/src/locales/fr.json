@@ -67,10 +67,12 @@
   },
   "showcase": {
     "title": "Voir le résultat",
-    "subtitle": "Faites glisser la poignée pour comparer. La mention « 豆包AI生成 » est effacée tandis que le reste de la photo reste identique au pixel près.",
+    "subtitle": "Original et nettoyée côte à côte, avec le coin du filigrane agrandi — la marque est effacée tandis que le reste de la photo reste identique au pixel près.",
     "original": "Original",
     "cleaned": "Nettoyée",
-    "hint": "Glissez pour comparer"
+    "detail": "Détail · coin",
+    "watermark": "Filigrane",
+    "removed": "Supprimée"
   },
   "platforms": {
     "title": "Plateformes prises en charge",

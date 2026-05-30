@@ -1,9 +1,21 @@
 import { useTranslation } from "react-i18next";
-import BeforeAfter from "./BeforeAfter";
+import WatermarkCompare from "./WatermarkCompare";
 
 const EXAMPLES = [
-  { original: "/showcase/street-original.jpg", cleaned: "/showcase/street-cleaned.jpg", alt: "Shimokitazawa street" },
-  { original: "/showcase/alley-original.jpg", cleaned: "/showcase/alley-cleaned.jpg", alt: "Alley portrait" },
+  {
+    original: "/showcase/street-original.webp",
+    cleaned: "/showcase/street-cleaned.webp",
+    zoomOriginal: "/showcase/street-original-zoom.webp",
+    zoomCleaned: "/showcase/street-cleaned-zoom.webp",
+    alt: "Doubao text watermark",
+  },
+  {
+    original: "/showcase/alley-original.webp",
+    cleaned: "/showcase/alley-cleaned.webp",
+    zoomOriginal: "/showcase/alley-original-zoom.webp",
+    zoomCleaned: "/showcase/alley-cleaned-zoom.webp",
+    alt: "Gemini sparkle watermark",
+  },
 ];
 
 export default function Showcase() {
@@ -18,12 +30,10 @@ export default function Showcase() {
         <p className="mt-5 max-w-[46ch] leading-relaxed text-ink-muted">{t("showcase.subtitle")}</p>
       </div>
 
-      <div className="lg:col-span-8">
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-          {EXAMPLES.map((ex) => (
-            <BeforeAfter key={ex.original} original={ex.original} cleaned={ex.cleaned} alt={ex.alt} />
-          ))}
-        </div>
+      <div className="space-y-8 lg:col-span-8">
+        {EXAMPLES.map((ex) => (
+          <WatermarkCompare key={ex.original} {...ex} />
+        ))}
       </div>
     </div>
   );

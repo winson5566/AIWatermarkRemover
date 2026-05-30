@@ -67,10 +67,12 @@
   },
   "showcase": {
     "title": "Míralo en acción",
-    "subtitle": "Arrastra el control para comparar. La etiqueta «豆包AI生成» se borra y el resto de la foto queda idéntico píxel a píxel.",
+    "subtitle": "Original y limpia en paralelo, con la esquina de la marca ampliada — la marca se borra y el resto de la foto queda idéntico píxel a píxel.",
     "original": "Original",
     "cleaned": "Limpia",
-    "hint": "Arrastra para comparar"
+    "detail": "Detalle · esquina",
+    "watermark": "Marca de agua",
+    "removed": "Eliminada"
   },
   "platforms": {
     "title": "Plataformas compatibles",

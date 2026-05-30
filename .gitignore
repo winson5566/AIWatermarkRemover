@@ -27,3 +27,9 @@ Thumbs.db
 uploads/
 *.log
 test-results/
+
+# macOS
+.DS_Store
+
+# Showcase source PNGs (optimized .webp are committed instead)
+frontend/public/showcase/*.png

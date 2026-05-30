@@ -67,10 +67,12 @@
   },
   "showcase": {
     "title": "See it in action",
-    "subtitle": "Drag the handle to compare. The “豆包AI生成” label is erased while the rest of the photo stays pixel-identical.",
+    "subtitle": "Original and cleaned side by side, with the watermark corner magnified — the mark is erased while the rest of the photo stays pixel-identical.",
     "original": "Original",
     "cleaned": "Cleaned",
-    "hint": "Drag to compare"
+    "detail": "Detail · corner",
+    "watermark": "Watermark",
+    "removed": "Removed"
   },
   "platforms": {
     "title": "Supported sources",
